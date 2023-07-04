@@ -1,4 +1,5 @@
 import {data} from "./data.js";
+import {v4 as uuidv4} from "https://jspm.dev/uuid";
 
 const order = [];
 
@@ -29,7 +30,6 @@ function renderList() {
     </div>
     <span class="spacer"></span>
     `;
-    // console.log(poster);
   });
 
   root.innerHTML = posterList;
@@ -87,11 +87,11 @@ function renderOrder() {
   order.forEach(function(orderItem) {
     orderString += `
     <div>
-      <div class="order-details-list">
+      <div class="order-details-list" data-orderid=${orderItem.orderId}>
       <p class="bold">Title: <p>${orderItem.name}</p></p>
       <div class="bold">Price: <p>${orderItem.price}</p><div>
       <div class="order-button-container">
-        <button class="remove">Remove</button>
+        <button class="remove" id=${orderItem.orderId}>Remove</button>
       </div>
       </div>
       <span class="spacer"></span>
@@ -109,9 +109,26 @@ function updateOrderDetails(target) {
       return poster;
     }
   });
+  locatedPoster[0].orderId = uuidv4();
   order.push(locatedPoster[0]);
 }
 
+function handleREmoveOrder(e) {
+  let idx = 0;
+  for (let item of order) {
+    if (item.orderId === e.target.id) {
+      order.splice(idx, 1);
+      break;
+    }
+    idx++;
+  }
+
+  if (order.length === 0) {
+    toggleOrderDetailsHide();
+  } else {
+    renderOrder();
+  }
+}
 orderList.addEventListener("click", function(e) {
   if (e.target.classList.contains("fa-angle-down")) {
     toggleItem(e);
@@ -126,7 +143,7 @@ orderList.addEventListener("click", function(e) {
     renderOrder();
     // renderOrderTotal();
     toggleOrderDetailsVisible();
+  } else if (e.target.classList.contains("remove")) {
+    handleREmoveOrder(e);
   }
 });
-
-console.log("here");
