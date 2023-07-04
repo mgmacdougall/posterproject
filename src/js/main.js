@@ -91,7 +91,7 @@ function renderOrder() {
       <p class="bold">Title: <p>${orderItem.name}</p></p>
       <div class="bold">Price: <p>${orderItem.price}</p><div>
       <div class="order-button-container">
-        <button class="remove" id=${orderItem.orderId}>Remove</button>
+        <button class="order-button" id=${orderItem.orderId}>Remove</button>
       </div>
       </div>
       <span class="spacer"></span>
