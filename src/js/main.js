@@ -113,7 +113,7 @@ function updateOrderDetails(target) {
   order.push(locatedPoster[0]);
 }
 
-function handleREmoveOrder(e) {
+function handleRemoveOrder(e) {
   console.log("here");
   let idx = 0;
   for (let item of order) {
@@ -131,6 +131,51 @@ function handleREmoveOrder(e) {
   }
 }
 
+function renderModal() {
+  console.log("placing order");
+  console.log(order);
+
+  let placeOrderString = "";
+  let insertLocation = document.getElementById("order-modal");
+
+  console.log(insertLocation);
+  placeOrderString = `
+  <div class="order-form">
+    <h2>Order Information</h2>
+    <form class="form">
+      <input type="text" placeholder="Enter name" required></input>
+      <input type="text" placeholder="Enter Address" required></input>
+      <input type="email" placeholder="Enter email" required></input>
+      <div>
+      <button id="submit-order" class="submit-order">Order</button>
+      </div>
+    </form>
+  </div>
+  `;
+  insertLocation.innerHTML = placeOrderString;
+  insertLocation.classList.toggle("hidden");
+}
+
+function handlePurchaseOrder(e) {
+  e.preventDefault();
+  const formEl = document.querySelectorAll("form input");
+  let orderDetailsStr = "";
+  const name= formEl[0].value
+  const address= formEl[1].value
+  const email= formEl[2].value
+  orderDetailsStr = `
+  <div>
+    <p>Thank you ${name} for your order.</p>
+    <p>Your order has been placed.</p>
+    <p>Address: ${address}</p>
+  </div>`;
+  // document.getElementById("order").classList.toggle('hidden');
+  document.getElementById("order-modal").remove()
+  document.getElementById('order-items').remove();
+  document.getElementById("order-total").remove();
+  document.getElementById("order-status").innerHTML = orderDetailsStr;
+}
+
 orderList.addEventListener("click", function(e) {
   if (e.target.classList.contains("fa-angle-down")) {
     toggleItem(e);
@@ -145,7 +190,13 @@ orderList.addEventListener("click", function(e) {
     renderOrder();
     toggleOrderDetailsVisible();
   } else if (e.target.classList.contains("remove-button")) {
-    handleREmoveOrder(e);
+    handleRemoveOrder(e);
+  } else if (e.target.classList.contains("place-order")) {
+    renderModal();
+  } else if (e.target.classList.contains("submit-order")) {
+    console.log("Submitting order");
+    handlePurchaseOrder(e);
   } else {
+    console.log("no button selected");
   }
 });

@@ -13,14 +13,24 @@ body {
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
 }
 
 .order-form {
+  font-weight: bold;
+  width: 350px;
+  height: 300px;
+  background-color: whitesmoke;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+
+.order-form>form {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .img-container {
@@ -147,6 +157,19 @@ i {
 
 }
 
+.order-form h2 {
+  text-align: center;
+  margin: 20px 0;
+}
+
 #order-total {
   margin-bottom: 20px;
+}
+
+form {
+  margin: 0 5px;
+}
+
+input {
+  line-height: 2rem;
 }
