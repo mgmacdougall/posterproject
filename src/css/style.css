@@ -6,6 +6,23 @@ body {
 
 }
 
+.order-modal {
+  position: fixed;
+  z-index: 1;
+  width: 300px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .img-container {
   display: flex;
   margin-left: auto;

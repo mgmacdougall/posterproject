@@ -91,7 +91,7 @@ function renderOrder() {
       <p class="bold">Title: <p>${orderItem.name}</p></p>
       <div class="bold">Price: <p>${orderItem.price}</p><div>
       <div class="order-button-container">
-        <button class="order-button" id=${orderItem.orderId}>Remove</button>
+        <button class="remove-button" id=${orderItem.orderId}>Remove</button>
       </div>
       </div>
       <span class="spacer"></span>
@@ -114,6 +114,7 @@ function updateOrderDetails(target) {
 }
 
 function handleREmoveOrder(e) {
+  console.log("here");
   let idx = 0;
   for (let item of order) {
     if (item.orderId === e.target.id) {
@@ -129,6 +130,7 @@ function handleREmoveOrder(e) {
     renderOrder();
   }
 }
+
 orderList.addEventListener("click", function(e) {
   if (e.target.classList.contains("fa-angle-down")) {
     toggleItem(e);
@@ -141,9 +143,9 @@ orderList.addEventListener("click", function(e) {
   } else if (e.target.classList.contains("order-button")) {
     updateOrderDetails(e.target);
     renderOrder();
-    // renderOrderTotal();
     toggleOrderDetailsVisible();
-  } else if (e.target.classList.contains("remove")) {
+  } else if (e.target.classList.contains("remove-button")) {
     handleREmoveOrder(e);
+  } else {
   }
 });
