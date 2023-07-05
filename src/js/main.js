@@ -132,13 +132,9 @@ function handleRemoveOrder(e) {
 }
 
 function renderModal() {
-  console.log("placing order");
-  console.log(order);
-
   let placeOrderString = "";
   let insertLocation = document.getElementById("order-modal");
 
-  console.log(insertLocation);
   placeOrderString = `
   <div class="order-form">
     <h2>Order Information</h2>
@@ -169,7 +165,6 @@ function handlePurchaseOrder(e) {
     <p>Your order has been placed.</p>
     <p>Address: ${address}</p>
   </div>`;
-  // document.getElementById("order").classList.toggle('hidden');
   document.getElementById("order-modal").remove()
   document.getElementById('order-items').remove();
   document.getElementById("order-total").remove();
